@@ -1,0 +1,133 @@
+body {
+  background-color: rgb(56, 56, 56);
+}
+
+.container {
+  position: relative;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+#text {
+  color: white;
+}
+
+.btn {
+  width: 312px;
+  height: 312px;
+  border-width: 10px;
+  border-style: solid;
+  cursor: pointer;
+}
+
+/* GREEN BUTTON */
+#btn-green {
+  background-color: rgb(16, 187, 19);
+  border-color: rgb(11, 163, 14);
+  border-top-left-radius: 100%;
+}
+
+#btn-green:hover {
+  background-color: rgb(15, 177, 18);
+}
+
+.btn-green-pressed,
+#btn-green:active {
+  background-color: #00ff04;
+  border-color: #6cdc40;
+  box-shadow: 0 0 30px #67d53c, 0 0 20px #67d53c, 0 0 50px #67d53c,
+    0 0 90px #67d53c;
+  z-index: 1;
+}
+
+/* RED BUTTON */
+#btn-red {
+  background-color: #ed3a3a;
+  border-color: #c43535;
+  border-top-right-radius: 100%;
+}
+
+#btn-red:hover {
+  background-color: #df3434;
+}
+
+.btn-red-pressed,
+#btn-red:active {
+  background-color: #ff0000;
+  border-color: #d23636;
+  box-shadow: 0 0 30px #d73b3b, 0 0 20px #d73b3b, 0 0 50px #d73b3b,
+    0 0 90px #d73b3b;
+  z-index: 1;
+}
+/* ///////////// */
+
+/* YELLOW BUTTON */
+#btn-yellow {
+  background-color: #eddc45;
+  border-bottom-left-radius: 100%;
+  border-color: #c4ba35;
+}
+
+#btn-yellow:hover {
+  background-color: #e2d028;
+}
+
+.btn-yellow-pressed,
+#btn-yellow:active {
+  background-color: rgb(255, 238, 0);
+  border-color: rgb(224, 209, 6);
+  box-shadow: 0 0 30px #e2d028, 0 0 20px #e2d028, 0 0 50px #e2d028,
+    0 0 90px #e2d028;
+  z-index: 1;
+}
+/* ///////////// */
+
+/* BLUE BUTTON */
+#btn-blue {
+  background-color: #45c6ed;
+  border-bottom-right-radius: 100%;
+  border-color: #35a3c4;
+}
+
+#btn-blue:hover {
+  background-color: #3dbbe1;
+}
+
+.btn-blue-pressed,
+#btn-blue:active {
+  background-color: #00eaff;
+  border-color: #06d8eb;
+  box-shadow: 0 0 30px #3dbbe1, 0 0 20px #3dbbe1, 0 0 50px #3dbbe1,
+    0 0 90px #3dbbe1;
+}
+/* ///////////// */
+
+#init {
+  position: absolute;
+  background-color: black;
+  opacity: 0.5;
+  width: 624px;
+  height: 624px;
+  border-radius: 100%;
+  z-index: 2;
+}
+
+#score {
+  position: absolute;
+  border-radius: 100%;
+  z-index: 2;
+  width: 200px;
+  height: 200px;
+  background-color: rgb(0, 52, 91);
+  /* background-color: white; */
+  /* background-color: #ff9eba; */
+}
