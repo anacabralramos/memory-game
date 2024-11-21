@@ -1,42 +1,25 @@
 // const text = "JOGO DA MEMORIA";
 // document.getElementById("text").textContent = text;
 
+const VALUES = ["GREEN", "RED", "BLUE", "YELLOW"];
+var currentStep = 0;
+var currentClick = 0;
+
 const start = document.getElementById("start");
 const greenBtn = document.getElementById("btn-green");
 const redBtn = document.getElementById("btn-red");
 const blueBtn = document.getElementById("btn-blue");
 const yellowBtn = document.getElementById("btn-yellow");
 
-greenBtn.addEventListener("click", async function () {
-  greenBtn.style.pointerEvents = "none";
-  await handlePressButton("GREEN");
-  greenBtn.style.pointerEvents = "auto";
+VALUES.forEach((color) => {
+  const button = document.getElementById(`btn-${color.toLowerCase()}`);
+
+  button.addEventListener("click", async function () {
+    button.style.pointerEvents = "none";
+    await handlePressButton(color);
+    button.style.pointerEvents = "auto";
+  });
 });
-
-redBtn.addEventListener("click", async function () {
-  redBtn.style.pointerEvents = "none";
-  await handlePressButton("RED");
-  redBtn.style.pointerEvents = "auto";
-});
-
-yellowBtn.addEventListener("click", async function () {
-  yellowBtn.style.pointerEvents = "none";
-  await handlePressButton("YELLOW");
-  yellowBtn.style.pointerEvents = "auto";
-});
-
-blueBtn.addEventListener("click", async function () {
-  blueBtn.style.pointerEvents = "none";
-  await handlePressButton("BLUE");
-  blueBtn.style.pointerEvents = "auto";
-});
-
-var currentStep = 0;
-var currentClick = 0;
-
-const VALUES = ["GREEN", "RED", "BLUE", "YELLOW"];
-
-// const originalSequence = ["GREEN", "GREEN", "RED", "RED", "BLUE", "BLUE"];
 
 const originalSequence = new Array(3)
   .fill()
@@ -57,20 +40,35 @@ const handlePressButton = async (item) => {
   if (originalSequence[currentClick] === item) {
     currentClick++;
     await mapColors(item);
+    checkIfSequenceComplete();
   } else {
-    return alert("errou");
+    alert("Você errou!");
+    resetGame();
   }
+};
+
+const checkIfSequenceComplete = () => {
   if (currentClick > currentStep) {
     currentClick = 0;
     if (++currentStep === originalSequence.length) {
       currentStep = 0;
-      return (start.style.display = "block");
+      start.style.display = "block";
+    } else {
+      handleGameSequence();
     }
-    handleGameSequence();
   }
 };
 
-const handleTurnButton = (button, style) => {
+const resetGame = () => {
+  currentStep = 0;
+  currentClick = 0;
+  originalSequence = new Array(3)
+    .fill()
+    .map(() => VALUES[Math.floor(Math.random() * 4)]);
+  start.style.display = "block";
+};
+
+const handleButtonBrightness = (button, style) => {
   button.classList.add(style);
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -83,16 +81,16 @@ const handleTurnButton = (button, style) => {
 const mapColors = async (color) => {
   switch (color) {
     case "GREEN":
-      await handleTurnButton(greenBtn, "btn-green-pressed");
+      await handleButtonBrightness(greenBtn, "btn-green-pressed");
       break;
     case "RED":
-      await handleTurnButton(redBtn, "btn-red-pressed");
+      await handleButtonBrightness(redBtn, "btn-red-pressed");
       break;
     case "BLUE":
-      await handleTurnButton(blueBtn, "btn-blue-pressed");
+      await handleButtonBrightness(blueBtn, "btn-blue-pressed");
       break;
     case "YELLOW":
-      await handleTurnButton(yellowBtn, "btn-yellow-pressed");
+      await handleButtonBrightness(yellowBtn, "btn-yellow-pressed");
       break;
   }
 };
@@ -104,6 +102,7 @@ const handleGameSequence = async () => {
   setTimeout(async () => {
     for (var i = 0; i <= currentStep; i++) {
       await mapColors(originalSequence[i]);
+      await new Promise((resolve) => setTimeout(resolve, 200));
     }
     toggleButtons(false, "auto");
   }, 1000);
