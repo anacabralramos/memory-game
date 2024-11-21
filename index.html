@@ -7,32 +7,15 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <p id="text"></p>
     <div class="container">
       <div id="game-board">
-        <button
-          id="btn-green"
-          class="btn"
-          onclick="handlePressButton('GREEN')"
-        ></button>
-        <button
-          id="btn-red"
-          class="btn"
-          onclick="handlePressButton('RED')"
-        ></button>
-        <button
-          id="btn-yellow"
-          class="btn"
-          onclick="handlePressButton('YELLOW')"
-        ></button>
-        <button
-          id="btn-blue"
-          class="btn"
-          onclick="handlePressButton('BLUE')"
-        ></button>
+        <button id="btn-green" class="btn btn-green"></button>
+        <button id="btn-red" class="btn btn-red"></button>
+        <button id="btn-yellow" class="btn btn-yellow"></button>
+        <button id="btn-blue" class="btn btn-blue"></button>
       </div>
       <div id="score"></div>
-      <div id="init">
+      <div id="start">
         <button onclick="handleStart()">start</button>
       </div>
     </div>
