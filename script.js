@@ -21,7 +21,7 @@ VALUES.forEach((color) => {
   });
 });
 
-const originalSequence = new Array(3)
+const originalSequence = new Array(5)
   .fill()
   .map(() => VALUES[Math.floor(Math.random() * 4)]);
 
