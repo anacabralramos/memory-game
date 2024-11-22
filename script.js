@@ -1,10 +1,8 @@
-// const text = "JOGO DA MEMORIA";
-// document.getElementById("text").textContent = text;
-
 const VALUES = ["GREEN", "RED", "BLUE", "YELLOW"];
 var currentStep = 0;
 var currentClick = 0;
 
+const score = document.getElementById("score");
 const start = document.getElementById("start");
 const greenBtn = document.getElementById("btn-green");
 const redBtn = document.getElementById("btn-red");
@@ -97,6 +95,7 @@ const mapColors = async (color) => {
 
 // game sequence
 const handleGameSequence = async () => {
+  score.textContent = `${currentStep}`;
   toggleButtons(true, "none");
 
   setTimeout(async () => {

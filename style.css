@@ -21,7 +21,7 @@ body {
     #00ffd0 100%
   );
   background-size: 200% 200%;
-  animation: gradientMove 8s ease infinite;
+  animation: gradientMove 100s ease infinite;
 }
 
 #game-board {
@@ -45,16 +45,15 @@ body {
 .btn:active {
   transform: scale(0.95);
 }
+
 /* GREEN BUTTON */
 .btn-green {
   background-color: rgb(16, 187, 19);
   border-top-left-radius: 100%;
 }
-
 .btn-green:hover {
   background-color: rgb(15, 177, 18);
 }
-
 .btn-green-pressed {
   background-color: #00ff04;
   border-color: #6cdc40;
@@ -68,11 +67,9 @@ body {
   background-color: #ed3a3a;
   border-top-right-radius: 100%;
 }
-
 .btn-red:hover {
   background-color: #df3434;
 }
-
 .btn-red-pressed {
   background-color: #ff0000;
   border-color: #d23636;
@@ -86,11 +83,9 @@ body {
   background-color: #eddc45;
   border-bottom-left-radius: 100%;
 }
-
 .btn-yellow:hover {
   background-color: #e2d028;
 }
-
 .btn-yellow-pressed {
   background-color: rgb(255, 238, 0);
   border-color: rgb(224, 209, 6);
@@ -104,11 +99,9 @@ body {
   background-color: #45c6ed;
   border-bottom-right-radius: 100%;
 }
-
 .btn-blue:hover {
   background-color: #3dbbe1;
 }
-
 .btn-blue-pressed {
   background-color: #00eaff;
   border-color: #06d8eb;
@@ -125,12 +118,12 @@ body {
   z-index: 2;
 }
 
-#score {
+#menu {
   position: absolute;
   border-radius: 100%;
   z-index: 2;
-  width: 200px;
-  height: 200px;
+  width: 15vw;
+  height: 15vw;
   background-color: rgb(0, 52, 91);
 }
 
@@ -158,9 +151,19 @@ body {
   background-color: #35aa3b;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
-
 .btn-start:active {
   transform: translate(-50%, -50%) scale(0.98);
+}
+
+#score {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  transition: transform 0.5s, opacity 0.5s;
 }
 
 @keyframes gradientMove {
