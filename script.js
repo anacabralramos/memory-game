@@ -1,15 +1,13 @@
-import { delay, getButton } from "./utils.js";
+import { delay, getButton, getNewSequence, VALUES } from "./utils.js";
 
-const VALUES = ["GREEN", "RED", "BLUE", "YELLOW"];
 var currentStep = 0;
 var currentClick = 0;
-const originalSequence = new Array(5)
-  .fill()
-  .map(() => VALUES[Math.floor(Math.random() * 4)]);
+var originalSequence;
 
 const lblScore = document.getElementById("lbl-score");
 const start = document.getElementById("start");
 const btnStart = document.getElementById("btn-start");
+const btnReplay = document.getElementById("replay");
 
 // gamer press
 const handlePressButton = (item) => {
@@ -35,13 +33,14 @@ const checkIfSequenceComplete = () => {
 };
 
 const resetGame = () => {
-  // TODO: tela vermelha talvez
+  // TODO
+  // 1. subir score
+  // 2. mostrar botao pra jogar novamente
+  // 3. resetar o jogo
+  toggleButtons(true, "none");
+  btnReplay.style.display = "flex";
   currentStep = 0;
   currentClick = 0;
-  originalSequence = new Array(3)
-    .fill()
-    .map(() => VALUES[Math.floor(Math.random() * 4)]);
-  start.style.display = "block";
 };
 
 const toggleButtons = (disabled, pointer) => {
@@ -79,11 +78,14 @@ const handleGameSequence = async () => {
 
 // game start
 const handleStart = () => {
+  originalSequence = getNewSequence();
   start.style.display = "none";
+  btnReplay.style.display = "none";
   handleGameSequence();
 };
 
 btnStart.addEventListener("click", handleStart);
+btnReplay.addEventListener("click", handleStart);
 
 VALUES.forEach((color) => {
   const button = getButton(color);
