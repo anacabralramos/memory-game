@@ -1,41 +1,20 @@
+import { delay, getButton, toggleButtons } from "./utils.js";
+
 const VALUES = ["GREEN", "RED", "BLUE", "YELLOW"];
 var currentStep = 0;
 var currentClick = 0;
-
-const score = document.getElementById("score");
-const start = document.getElementById("start");
-const greenBtn = document.getElementById("btn-green");
-const redBtn = document.getElementById("btn-red");
-const blueBtn = document.getElementById("btn-blue");
-const yellowBtn = document.getElementById("btn-yellow");
-
-VALUES.forEach((color) => {
-  const button = document.getElementById(`btn-${color.toLowerCase()}`);
-
-  button.addEventListener("click", async function () {
-    await handlePressButton(color);
-  });
-});
-
 const originalSequence = new Array(5)
   .fill()
   .map(() => VALUES[Math.floor(Math.random() * 4)]);
 
-const toggleButtons = (disabled, pointer) => {
-  greenBtn.disabled = disabled;
-  greenBtn.style.pointerEvents = pointer;
-  redBtn.disabled = disabled;
-  redBtn.style.pointerEvents = pointer;
-  blueBtn.disabled = disabled;
-  blueBtn.style.pointerEvents = pointer;
-  yellowBtn.disabled = disabled;
-  yellowBtn.style.pointerEvents = pointer;
-};
+const score = document.getElementById("score");
+const start = document.getElementById("start");
+const btnStart = document.getElementById("btn-start");
 
-const handlePressButton = async (item) => {
+const handlePressButton = (item) => {
   if (originalSequence[currentClick] === item) {
     currentClick++;
-    await mapColors(item);
+    handleButtonEffect(item);
     checkIfSequenceComplete();
   } else {
     alert("Você errou!");
@@ -64,19 +43,15 @@ const resetGame = () => {
   start.style.display = "block";
 };
 
-const handleButtonBrightness = (button, style) => {
-  button.classList.add(style);
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      button.classList.remove(style);
-      resolve();
-    }, 400);
-  });
-};
+const handleButtonEffect = (color) => {
+  const button = getButton(color);
+  const styles = `btn-${color.toLowerCase()}-pressed`;
 
-const mapColors = async (color) => {
-  const button = document.getElementById(`btn-${color.toLowerCase()}`);
-  await handleButtonBrightness(button, `btn-${color.toLowerCase()}-pressed`);
+  button.classList.add(styles);
+
+  setTimeout(() => {
+    button.classList.remove(styles);
+  }, 400);
 };
 
 // game sequence
@@ -86,8 +61,8 @@ const handleGameSequence = async () => {
 
   setTimeout(async () => {
     for (var i = 0; i <= currentStep; i++) {
-      await mapColors(originalSequence[i]);
-      await new Promise((resolve) => setTimeout(resolve, 200));
+      handleButtonEffect(originalSequence[i]);
+      await delay(700);
     }
     toggleButtons(false, "auto");
   }, 1000);
@@ -98,3 +73,12 @@ const handleStart = () => {
   start.style.display = "none";
   handleGameSequence();
 };
+
+btnStart.addEventListener("click", handleStart);
+
+VALUES.forEach((color) => {
+  const button = getButton(color);
+  button.addEventListener("click", () => {
+    handlePressButton(color);
+  });
+});
