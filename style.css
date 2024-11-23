@@ -57,8 +57,8 @@ body {
 .btn-green:hover {
   background-color: rgb(15, 177, 18);
 }
-.btn-green-pressed {
-  background-color: #00ff04 !important;
+.btn-green.pressed {
+  background-color: #00ff04;
   box-shadow: 0 0 30px #67d53c, 0 0 20px #67d53c, 0 0 50px #67d53c,
     0 0 90px #67d53c;
   z-index: 1;
@@ -72,8 +72,8 @@ body {
 .btn-red:hover {
   background-color: #df3434;
 }
-.btn-red-pressed {
-  background-color: #ff0000 !important;
+.btn-red.pressed {
+  background-color: #ff0000;
   box-shadow: 0 0 30px #d73b3b, 0 0 20px #d73b3b, 0 0 50px #d73b3b,
     0 0 90px #d73b3b;
   z-index: 1;
@@ -87,8 +87,8 @@ body {
 .btn-yellow:hover {
   background-color: #e2d028;
 }
-.btn-yellow-pressed {
-  background-color: rgb(255, 238, 0) !important;
+.btn-yellow.pressed {
+  background-color: rgb(255, 238, 0);
   box-shadow: 0 0 30px #e2d028, 0 0 20px #e2d028, 0 0 50px #e2d028,
     0 0 90px #e2d028;
   z-index: 1;
@@ -102,8 +102,8 @@ body {
 .btn-blue:hover {
   background-color: #3dbbe1;
 }
-.btn-blue-pressed {
-  background-color: #00eaff !important;
+.btn-blue.pressed {
+  background-color: #00eaff;
   box-shadow: 0 0 30px #3dbbe1, 0 0 20px #3dbbe1, 0 0 50px #3dbbe1,
     0 0 90px #3dbbe1;
 }
@@ -121,7 +121,7 @@ body {
   flex-direction: column;
 }
 
-.container-score {
+.score {
   background: rgba(0, 0, 0, 0.5);
   display: inline-flex;
   justify-content: center;
@@ -129,6 +129,7 @@ body {
   gap: 10px;
   border-radius: 8px;
   padding: 0.5rem 0.5rem;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 span.material-icons {
@@ -142,8 +143,25 @@ span.material-icons {
   margin: 0;
 }
 
-#replay {
-  background-color: red;
+.replay {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+  background-color: #4caf50; 
+  color: white; 
+  font-size: 16px; 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+  transition: all 0.3s ease; /
+}
+
+.replay.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 #start {

@@ -5,6 +5,7 @@ var currentClick = 0;
 var originalSequence;
 
 const lblScore = document.getElementById("lbl-score");
+const score = document.querySelector(".score");
 const start = document.getElementById("start");
 const btnStart = document.getElementById("btn-start");
 const btnReplay = document.getElementById("replay");
@@ -33,14 +34,12 @@ const checkIfSequenceComplete = () => {
 };
 
 const resetGame = () => {
-  // TODO
-  // 1. subir score
-  // 2. mostrar botao pra jogar novamente
-  // 3. resetar o jogo
   toggleButtons(true, "none");
-  btnReplay.style.display = "flex";
   currentStep = 0;
   currentClick = 0;
+
+  btnReplay.classList.add("show");
+  score.style.transform = "translateY(-10px)";
 };
 
 const toggleButtons = (disabled, pointer) => {
@@ -53,12 +52,11 @@ const toggleButtons = (disabled, pointer) => {
 
 const handleButtonEffect = (color) => {
   const button = getButton(color);
-  const styles = `btn-${color.toLowerCase()}-pressed`;
 
-  button.classList.add(styles);
+  button.classList.add("pressed");
 
   setTimeout(() => {
-    button.classList.remove(styles);
+    button.classList.remove("pressed");
   }, 400);
 };
 
@@ -80,8 +78,9 @@ const handleGameSequence = async () => {
 const handleStart = () => {
   originalSequence = getNewSequence();
   start.style.display = "none";
-  btnReplay.style.display = "none";
   handleGameSequence();
+  btnReplay.classList.remove("show");
+  score.style.transform = "translateY(10px)";
 };
 
 btnStart.addEventListener("click", handleStart);
