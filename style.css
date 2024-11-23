@@ -55,8 +55,7 @@ body {
   background-color: rgb(15, 177, 18);
 }
 .btn-green-pressed {
-  background-color: #00ff04;
-  border-color: #6cdc40;
+  background-color: #00ff04 !important;
   box-shadow: 0 0 30px #67d53c, 0 0 20px #67d53c, 0 0 50px #67d53c,
     0 0 90px #67d53c;
   z-index: 1;
@@ -71,8 +70,7 @@ body {
   background-color: #df3434;
 }
 .btn-red-pressed {
-  background-color: #ff0000;
-  border-color: #d23636;
+  background-color: #ff0000 !important;
   box-shadow: 0 0 30px #d73b3b, 0 0 20px #d73b3b, 0 0 50px #d73b3b,
     0 0 90px #d73b3b;
   z-index: 1;
@@ -87,8 +85,7 @@ body {
   background-color: #e2d028;
 }
 .btn-yellow-pressed {
-  background-color: rgb(255, 238, 0);
-  border-color: rgb(224, 209, 6);
+  background-color: rgb(255, 238, 0) !important;
   box-shadow: 0 0 30px #e2d028, 0 0 20px #e2d028, 0 0 50px #e2d028,
     0 0 90px #e2d028;
   z-index: 1;
@@ -103,8 +100,7 @@ body {
   background-color: #3dbbe1;
 }
 .btn-blue-pressed {
-  background-color: #00eaff;
-  border-color: #06d8eb;
+  background-color: #00eaff !important;
   box-shadow: 0 0 30px #3dbbe1, 0 0 20px #3dbbe1, 0 0 50px #3dbbe1,
     0 0 90px #3dbbe1;
 }
@@ -155,7 +151,7 @@ body {
   transform: translate(-50%, -50%) scale(0.98);
 }
 
-#score {
+/* #score {
   font-size: 24px;
   font-weight: bold;
   color: white;
@@ -164,7 +160,7 @@ body {
   border-radius: 8px;
   margin-bottom: 20px;
   transition: transform 0.5s, opacity 0.5s;
-}
+} */
 
 @keyframes gradientMove {
   0% {

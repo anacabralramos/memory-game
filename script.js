@@ -13,9 +13,7 @@ VALUES.forEach((color) => {
   const button = document.getElementById(`btn-${color.toLowerCase()}`);
 
   button.addEventListener("click", async function () {
-    button.style.pointerEvents = "none";
     await handlePressButton(color);
-    button.style.pointerEvents = "auto";
   });
 });
 
@@ -77,20 +75,8 @@ const handleButtonBrightness = (button, style) => {
 };
 
 const mapColors = async (color) => {
-  switch (color) {
-    case "GREEN":
-      await handleButtonBrightness(greenBtn, "btn-green-pressed");
-      break;
-    case "RED":
-      await handleButtonBrightness(redBtn, "btn-red-pressed");
-      break;
-    case "BLUE":
-      await handleButtonBrightness(blueBtn, "btn-blue-pressed");
-      break;
-    case "YELLOW":
-      await handleButtonBrightness(yellowBtn, "btn-yellow-pressed");
-      break;
-  }
+  const button = document.getElementById(`btn-${color.toLowerCase()}`);
+  await handleButtonBrightness(button, `btn-${color.toLowerCase()}-pressed`);
 };
 
 // game sequence
