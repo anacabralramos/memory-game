@@ -1,4 +1,4 @@
-import { delay, getButton, toggleButtons } from "./utils.js";
+import { delay, getButton } from "./utils.js";
 
 const VALUES = ["GREEN", "RED", "BLUE", "YELLOW"];
 var currentStep = 0;
@@ -11,13 +11,13 @@ const score = document.getElementById("score");
 const start = document.getElementById("start");
 const btnStart = document.getElementById("btn-start");
 
+// gamer press
 const handlePressButton = (item) => {
   if (originalSequence[currentClick] === item) {
     currentClick++;
     handleButtonEffect(item);
     checkIfSequenceComplete();
   } else {
-    alert("Você errou!");
     resetGame();
   }
 };
@@ -35,12 +35,21 @@ const checkIfSequenceComplete = () => {
 };
 
 const resetGame = () => {
+  // TODO: tela vermelha talvez
   currentStep = 0;
   currentClick = 0;
   originalSequence = new Array(3)
     .fill()
     .map(() => VALUES[Math.floor(Math.random() * 4)]);
   start.style.display = "block";
+};
+
+const toggleButtons = (disabled, pointer) => {
+  VALUES.forEach((color) => {
+    const button = getButton(color);
+    button.disabled = disabled;
+    button.style.pointerEvents = pointer;
+  });
 };
 
 const handleButtonEffect = (color) => {
