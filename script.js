@@ -7,7 +7,7 @@ const originalSequence = new Array(5)
   .fill()
   .map(() => VALUES[Math.floor(Math.random() * 4)]);
 
-const score = document.getElementById("score");
+const lblScore = document.getElementById("lbl-score");
 const start = document.getElementById("start");
 const btnStart = document.getElementById("btn-start");
 
@@ -27,7 +27,7 @@ const checkIfSequenceComplete = () => {
     currentClick = 0;
     if (++currentStep === originalSequence.length) {
       currentStep = 0;
-      start.style.display = "block";
+      start.style.display = "flex";
     } else {
       handleGameSequence();
     }
@@ -65,7 +65,7 @@ const handleButtonEffect = (color) => {
 
 // game sequence
 const handleGameSequence = async () => {
-  score.textContent = `${currentStep}`;
+  lblScore.textContent = `${currentStep}`;
   toggleButtons(true, "none");
 
   setTimeout(async () => {
