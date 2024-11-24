@@ -76,15 +76,24 @@ const handleGameSequence = async () => {
 
 // game start
 const handleStart = () => {
+  btnStart.classList.add("hide");
   originalSequence = getNewSequence();
-  start.style.display = "none";
+  handleGameSequence();
+  setTimeout(function () {
+    start.style.display = "none";
+  }, 300);
+};
+
+// game replay
+const handleReplay = () => {
+  originalSequence = getNewSequence();
   handleGameSequence();
   btnReplay.classList.remove("show");
   score.style.transform = "translateY(10px)";
 };
 
 btnStart.addEventListener("click", handleStart);
-btnReplay.addEventListener("click", handleStart);
+btnReplay.addEventListener("click", handleReplay);
 
 VALUES.forEach((color) => {
   const button = getButton(color);
