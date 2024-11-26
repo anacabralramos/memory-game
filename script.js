@@ -9,6 +9,7 @@ const score = document.querySelector(".score");
 const btnStart = document.getElementById("btn-start");
 const hiddenBackground = document.getElementById("hiddenBackground");
 const btnReplay = document.getElementById("replay");
+const winContainer = document.getElementById("win-container");
 
 const playTone = (frequency) => {
   const synth = new Tone.Synth().toDestination();
@@ -30,13 +31,20 @@ const checkIfSequenceComplete = () => {
   if (currentClick > currentStep) {
     currentClick = 0;
     if (++currentStep === originalSequence.length) {
-      // TODO: restart
-      // currentStep = 0;
-      // start.style.display = "flex";
+      handleYouWin();
     } else {
       handleGameSequence();
     }
   }
+};
+
+const handleYouWin = () => {
+  hiddenBackground.style.display = "flex";
+  toggleButtons(true, "none");
+  currentStep = 0;
+  currentClick = 0;
+
+  winContainer.style.display = "flex";
 };
 
 const handleGameOver = () => {
@@ -86,7 +94,8 @@ const handleGameSequence = async () => {
 // game start
 const handleStart = () => {
   btnStart.classList.add("hide");
-  originalSequence = getNewSequence();
+  // originalSequence = getNewSequence();
+  originalSequence = ["GREEN"];
   handleGameSequence();
   setTimeout(() => {
     btnStart.style.display = "none";
