@@ -1,4 +1,4 @@
-import { delay, getButton, getNewSequence, VALUES } from "./utils.js";
+import { delay, getButton, getNewSequence, VALUES, TONS } from "./utils.js";
 
 var currentStep = 0;
 var currentClick = 0;
@@ -9,6 +9,11 @@ const score = document.querySelector(".score");
 const start = document.getElementById("start");
 const btnStart = document.getElementById("btn-start");
 const btnReplay = document.getElementById("replay");
+
+const playTone = (frequency) => {
+  const synth = new Tone.Synth().toDestination();
+  synth.triggerAttackRelease(frequency, "8n");
+};
 
 // gamer press
 const handlePressButton = (item) => {
@@ -25,8 +30,9 @@ const checkIfSequenceComplete = () => {
   if (currentClick > currentStep) {
     currentClick = 0;
     if (++currentStep === originalSequence.length) {
-      currentStep = 0;
-      start.style.display = "flex";
+      // TODO: restart
+      // currentStep = 0;
+      // start.style.display = "flex";
     } else {
       handleGameSequence();
     }
@@ -34,6 +40,7 @@ const checkIfSequenceComplete = () => {
 };
 
 const resetGame = () => {
+  // TODO: melhorar o reset
   toggleButtons(true, "none");
   currentStep = 0;
   currentClick = 0;
@@ -52,7 +59,8 @@ const toggleButtons = (disabled, pointer) => {
 
 const handleButtonEffect = (color) => {
   const button = getButton(color);
-
+  const ton = TONS[color];
+  playTone(ton);
   button.classList.add("pressed");
 
   setTimeout(() => {
