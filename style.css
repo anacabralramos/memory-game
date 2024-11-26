@@ -145,23 +145,21 @@ span.material-icons {
 
 .replay {
   opacity: 0;
-  transform: translateY(20px);
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-
-  background-color: #4caf50; 
-  color: white; 
-  font-size: 16px; 
-  padding: 10px 20px; 
-  border: none; 
-  border-radius: 8px; 
-  cursor: pointer; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
-  transition: all 0.3s ease; /
+  position: absolute;
+  transform: translateY(35px);
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 .replay.show {
   opacity: 1;
-  transform: translateY(0);
+  cursor: pointer;
 }
 
 #start {

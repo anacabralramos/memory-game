@@ -22,7 +22,7 @@ const handlePressButton = (item) => {
     handleButtonEffect(item);
     checkIfSequenceComplete();
   } else {
-    resetGame();
+    handleGameOver();
   }
 };
 
@@ -39,14 +39,14 @@ const checkIfSequenceComplete = () => {
   }
 };
 
-const resetGame = () => {
-  // TODO: melhorar o reset
+const handleGameOver = () => {
   toggleButtons(true, "none");
   currentStep = 0;
   currentClick = 0;
 
+  btnReplay.disabled = false;
   btnReplay.classList.add("show");
-  score.style.transform = "translateY(-10px)";
+  score.style.transform = "translateY(-30px)";
 };
 
 const toggleButtons = (disabled, pointer) => {
@@ -97,7 +97,8 @@ const handleReplay = () => {
   originalSequence = getNewSequence();
   handleGameSequence();
   btnReplay.classList.remove("show");
-  score.style.transform = "translateY(10px)";
+  btnReplay.disabled = true;
+  score.style.transform = "translateY(0)";
 };
 
 btnStart.addEventListener("click", handleStart);
