@@ -11,6 +11,34 @@ const hiddenBackground = document.getElementById("hiddenBackground");
 const btnReplay = document.getElementById("replay");
 const winContainer = document.getElementById("win-container");
 
+const createConfetti = () => {
+  const confettiContainer = document.getElementById("confetti-container");
+
+  for (let i = 0; i < 50; i++) {
+    const confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    confetti.style.left = "0";
+    confetti.style.bottom = "0";
+    confetti.style.setProperty("--confetti-x", `${Math.random() * 100}vw`);
+    confetti.style.animationDelay = `${Math.random()}s`;
+    confettiContainer.appendChild(confetti);
+  }
+
+  for (let i = 0; i < 50; i++) {
+    const confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    confetti.style.right = "0";
+    confetti.style.bottom = "0";
+    confetti.style.setProperty("--confetti-x", `-${Math.random() * 100}vw`);
+    confetti.style.animationDelay = `${Math.random()}s`;
+    confettiContainer.appendChild(confetti);
+  }
+
+  setTimeout(() => {
+    confettiContainer.innerHTML = "";
+  }, 5000);
+};
+
 const playTone = (frequency) => {
   const synth = new Tone.Synth().toDestination();
   synth.triggerAttackRelease(frequency, "8n");
@@ -39,6 +67,7 @@ const checkIfSequenceComplete = () => {
 };
 
 const handleYouWin = () => {
+  createConfetti();
   hiddenBackground.style.display = "flex";
   toggleButtons(true, "none");
   currentStep = 0;

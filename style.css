@@ -235,6 +235,51 @@ span.material-icons {
   font-family: "Press Start 2P", cursive;
 }
 
+#confetti-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: blue;
+  border-radius: 50%;
+  opacity: 0.9;
+  animation: confetti-fly 2s ease-out forwards,
+    confetti-fall 2s ease-in forwards;
+}
+
+.confetti:nth-child(2n) {
+  background-color: red;
+}
+
+.confetti:nth-child(3n) {
+  background-color: #00ff00;
+}
+
+@keyframes confetti-fly {
+  from {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  to {
+    transform: translateX(var(--confetti-x)) translateY(-100vh) rotate(720deg);
+  }
+}
+
+@keyframes confetti-fall {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 @keyframes gradientMove {
   0% {
     background-position: 0% 50%;
