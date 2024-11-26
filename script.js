@@ -4,11 +4,11 @@ var currentStep = 0;
 var currentClick = 0;
 var originalSequence;
 
+const btnStart = document.getElementById("btn-start");
+const btnReplay = document.getElementById("btn-replay");
 const lblScore = document.getElementById("lbl-score");
 const gameOver = document.getElementById("game-over");
-const btnStart = document.getElementById("btn-start");
 const hiddenBackground = document.getElementById("hiddenBackground");
-const btnReplay = document.getElementById("replay");
 const winContainer = document.getElementById("win-container");
 
 const createConfetti = () => {
@@ -82,9 +82,6 @@ const handleGameOver = () => {
   toggleButtons(true, "none");
   currentStep = 0;
   currentClick = 0;
-
-  btnReplay.disabled = false;
-  btnReplay.classList.add("show");
 };
 
 const toggleButtons = (disabled, pointer) => {
@@ -108,6 +105,7 @@ const handleButtonEffect = (color) => {
 
 // game sequence
 const handleGameSequence = async () => {
+  originalSequence = getNewSequence();
   lblScore.textContent = `${currentStep}`;
   toggleButtons(true, "none");
 
@@ -123,7 +121,6 @@ const handleGameSequence = async () => {
 // game start
 const handleStart = () => {
   btnStart.classList.add("hide");
-  originalSequence = getNewSequence();
   handleGameSequence();
   setTimeout(() => {
     btnStart.style.display = "none";
@@ -133,10 +130,7 @@ const handleStart = () => {
 
 // game replay
 const handleReplay = () => {
-  originalSequence = getNewSequence();
   handleGameSequence();
-  btnReplay.classList.remove("show");
-  btnReplay.disabled = true;
   hiddenBackground.style.display = "none";
   gameOver.style.display = "none";
 };

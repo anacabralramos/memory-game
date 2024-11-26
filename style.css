@@ -183,7 +183,6 @@ body {
 }
 
 .btn-replay {
-  opacity: 0;
   font-size: 16px;
   padding: 10px 20px;
 }
@@ -193,11 +192,6 @@ body {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
   color: #fff;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-}
-
-.btn-replay.show {
-  opacity: 1;
-  cursor: pointer;
 }
 
 #start {
