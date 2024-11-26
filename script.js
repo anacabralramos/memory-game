@@ -6,8 +6,8 @@ var originalSequence;
 
 const lblScore = document.getElementById("lbl-score");
 const score = document.querySelector(".score");
-const start = document.getElementById("start");
 const btnStart = document.getElementById("btn-start");
+const hiddenBackground = document.getElementById("hiddenBackground");
 const btnReplay = document.getElementById("replay");
 
 const playTone = (frequency) => {
@@ -40,6 +40,7 @@ const checkIfSequenceComplete = () => {
 };
 
 const handleGameOver = () => {
+  hiddenBackground.style.display = "flex";
   toggleButtons(true, "none");
   currentStep = 0;
   currentClick = 0;
@@ -87,8 +88,9 @@ const handleStart = () => {
   btnStart.classList.add("hide");
   originalSequence = getNewSequence();
   handleGameSequence();
-  setTimeout(function () {
-    start.style.display = "none";
+  setTimeout(() => {
+    btnStart.style.display = "none";
+    hiddenBackground.style.display = "none";
   }, 300);
 };
 
@@ -99,6 +101,7 @@ const handleReplay = () => {
   btnReplay.classList.remove("show");
   btnReplay.disabled = true;
   score.style.transform = "translateY(0)";
+  hiddenBackground.style.display = "none";
 };
 
 btnStart.addEventListener("click", handleStart);
