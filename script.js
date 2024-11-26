@@ -105,7 +105,6 @@ const handleButtonEffect = (color) => {
 
 // game sequence
 const handleGameSequence = async () => {
-  originalSequence = getNewSequence();
   lblScore.textContent = `${currentStep}`;
   toggleButtons(true, "none");
 
@@ -121,6 +120,7 @@ const handleGameSequence = async () => {
 // game start
 const handleStart = () => {
   btnStart.classList.add("hide");
+  originalSequence = getNewSequence();
   handleGameSequence();
   setTimeout(() => {
     btnStart.style.display = "none";
@@ -130,6 +130,7 @@ const handleStart = () => {
 
 // game replay
 const handleReplay = () => {
+  originalSequence = getNewSequence();
   handleGameSequence();
   hiddenBackground.style.display = "none";
   gameOver.style.display = "none";
