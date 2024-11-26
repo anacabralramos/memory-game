@@ -123,8 +123,7 @@ const handleGameSequence = async () => {
 // game start
 const handleStart = () => {
   btnStart.classList.add("hide");
-  // originalSequence = getNewSequence();
-  originalSequence = ["GREEN"];
+  originalSequence = getNewSequence();
   handleGameSequence();
   setTimeout(() => {
     btnStart.style.display = "none";
