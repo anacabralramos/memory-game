@@ -29,6 +29,14 @@ body {
   animation: gradientMove 100s ease infinite;
 }
 
+#hiddenBackground {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+}
+
 #game-board {
   width: min(45vw, 80vh);
   aspect-ratio: 1 / 1;
@@ -39,14 +47,7 @@ body {
   justify-content: center;
 }
 
-#hiddenBackground {
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
-.btn {
+.color-btn {
   all: unset;
   width: 100%;
   height: 100%;
@@ -54,7 +55,7 @@ body {
   transition: background-color 0.3s, transform 0.2s;
 }
 
-.btn:active {
+.color-btn:active {
   transform: scale(0.95);
 }
 
@@ -117,7 +118,7 @@ body {
     0 0 90px #3dbbe1;
 }
 
-#menu {
+.middle {
   width: min(15vw, 30vh);
   aspect-ratio: 1 / 1;
   position: absolute;
@@ -126,13 +127,13 @@ body {
   align-items: center;
   flex-direction: column;
   border-radius: 100%;
-  z-index: 2;
+  z-index: 1;
   background-color: rgb(0, 52, 91);
 }
 
 .score {
   background: rgba(0, 0, 0, 0.5);
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -141,34 +142,52 @@ body {
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-span.material-icons {
+.score span {
   font-size: 1rem;
   color: gold;
 }
 
-#lbl-score {
+.score p {
   font-size: 1rem;
   color: white;
   margin: 0;
+  font-weight: bold;
 }
 
-.replay {
-  opacity: 0;
-  position: absolute;
-  font-size: 16px;
-  padding: 10px 20px;
-  transform: translateY(35px);
-  transition: all 0.3s ease;
+.default-button {
   background-color: #4e91d4;
   color: #fff;
   font-weight: bold;
   border: 2px solid #6a3d9a;
   border-radius: 12px;
   text-transform: uppercase;
+  cursor: pointer;
   outline: none;
   font-family: "Press Start 2P", cursive;
+  transition: all 0.3s ease;
 }
-.replay:hover {
+
+#game-over {
+  display: none;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 2;
+  font-family: "Press Start 2P", cursive;
+  color: #fff;
+}
+
+#game-over h1 {
+  animation: blink 0.8s steps(1, start) infinite;
+}
+
+.btn-replay {
+  opacity: 0;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+.btn-replay:hover {
   background: linear-gradient(45deg, #6a3d9a, #4e91d4);
   border-color: #6a3d9a;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
@@ -176,30 +195,19 @@ span.material-icons {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-.replay.show {
+.btn-replay.show {
   opacity: 1;
   cursor: pointer;
 }
 
 #start {
-  position: absolute;
-  display: flex;
   z-index: 2;
+  position: absolute;
 }
 
 .btn-start {
   padding: 15px 30px;
-  background-color: #4e91d4;
-  color: #fff;
   font-size: 20px;
-  font-weight: bold;
-  border: 2px solid #6a3d9a;
-  border-radius: 12px;
-  text-transform: uppercase;
-  cursor: pointer;
-  outline: none;
-  font-family: "Press Start 2P", cursive;
-  transition: all 0.2s ease-in-out;
 }
 .btn-start:hover {
   background: linear-gradient(45deg, #6a3d9a, #4e91d4);
@@ -214,6 +222,7 @@ span.material-icons {
 }
 
 #win-container {
+  z-index: 2;
   display: none;
   position: absolute;
   background-color: #a2d2ff;
@@ -289,5 +298,15 @@ span.material-icons {
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
   }
 }
