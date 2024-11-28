@@ -161,10 +161,8 @@ body {
   border: 2px solid #6a3d9a;
   border-radius: 12px;
   text-transform: uppercase;
-  cursor: pointer;
   outline: none;
   font-family: "Press Start 2P", cursive;
-  transition: all 0.3s ease;
 }
 
 #game-over {
@@ -185,6 +183,7 @@ body {
 .btn-replay {
   font-size: 16px;
   padding: 10px 20px;
+  cursor: pointer;
 }
 .btn-replay:hover {
   background: linear-gradient(45deg, #6a3d9a, #4e91d4);
@@ -199,20 +198,45 @@ body {
   position: absolute;
 }
 
-.btn-start {
+#options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.container-option {
+  display: flex;
+  align-items: center;
+}
+.container-option span {
+  font-size: 40px;
+  color: white;
+}
+.arrow {
+  opacity: 0;
+}
+.arrow.selected {
+  opacity: 1;
+}
+.option {
+  font-family: "Press Start 2P", cursive;
+  font-size: 20px;
+  cursor: pointer;
+  color: rgb(169, 169, 103);
+}
+.option.selected {
+  color: rgb(255, 255, 76);
+}
+
+.game-start {
   padding: 15px 30px;
   font-size: 20px;
-}
-.btn-start:hover {
+  margin-bottom: 30px;
   background: linear-gradient(45deg, #6a3d9a, #4e91d4);
-  border-color: #6a3d9a;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
-  color: #fff;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-}
-.btn-start.hide {
-  transform: translateY(-20px);
-  opacity: 0;
 }
 
 #win-container {

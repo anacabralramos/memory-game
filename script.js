@@ -2,14 +2,17 @@ import { delay, getButton, getNewSequence, VALUES, TONS } from "./utils.js";
 
 var currentStep = 0;
 var currentClick = 0;
+var sequenceOption = 1;
 var originalSequence;
 
-const btnStart = document.getElementById("btn-start");
+const start = document.getElementById("start");
 const btnReplay = document.getElementById("btn-replay");
 const lblScore = document.getElementById("lbl-score");
 const gameOver = document.getElementById("game-over");
 const hiddenBackground = document.getElementById("hiddenBackground");
 const winContainer = document.getElementById("win-container");
+const options = document.querySelectorAll("#options li");
+const synth = new Tone.Synth().toDestination();
 
 const createConfetti = () => {
   const confettiContainer = document.getElementById("confetti-container");
@@ -37,11 +40,6 @@ const createConfetti = () => {
   setTimeout(() => {
     confettiContainer.innerHTML = "";
   }, 5000);
-};
-
-const playTone = (frequency) => {
-  const synth = new Tone.Synth().toDestination();
-  synth.triggerAttackRelease(frequency, "8n");
 };
 
 // gamer press
@@ -95,7 +93,8 @@ const toggleButtons = (disabled, pointer) => {
 const handleButtonEffect = (color) => {
   const button = getButton(color);
   const ton = TONS[color];
-  playTone(ton);
+  // playTone(ton);
+  synth.triggerAttackRelease(ton, "8n");
   button.classList.add("pressed");
 
   setTimeout(() => {
@@ -119,25 +118,33 @@ const handleGameSequence = async () => {
 
 // game start
 const handleStart = () => {
-  btnStart.classList.add("hide");
-  originalSequence = getNewSequence();
+  start.classList.add("hide");
+  originalSequence = getNewSequence(sequenceOption * 10);
   handleGameSequence();
   setTimeout(() => {
-    btnStart.style.display = "none";
+    start.style.display = "none";
     hiddenBackground.style.display = "none";
   }, 300);
 };
 
 // game replay
 const handleReplay = () => {
-  originalSequence = getNewSequence();
+  originalSequence = getNewSequence(sequenceOption * 10);
   handleGameSequence();
   hiddenBackground.style.display = "none";
   gameOver.style.display = "none";
 };
 
-btnStart.addEventListener("click", handleStart);
 btnReplay.addEventListener("click", handleReplay);
+
+options.forEach((item, key) => {
+  item.addEventListener("mouseover", () => {
+    options.forEach((el) => el.classList.remove("selected"));
+    sequenceOption = key + 1;
+    item.classList.add("selected");
+  });
+  item.addEventListener("click", handleStart);
+});
 
 VALUES.forEach((color) => {
   const button = getButton(color);
