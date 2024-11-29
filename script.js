@@ -12,6 +12,7 @@ const gameOver = document.getElementById("game-over");
 const hiddenBackground = document.getElementById("hiddenBackground");
 const winContainer = document.getElementById("win-container");
 const options = document.querySelectorAll("#options li");
+const arrows = document.querySelectorAll("#options span");
 const synth = new Tone.Synth().toDestination();
 
 const createConfetti = () => {
@@ -93,7 +94,6 @@ const toggleButtons = (disabled, pointer) => {
 const handleButtonEffect = (color) => {
   const button = getButton(color);
   const ton = TONS[color];
-  // playTone(ton);
   synth.triggerAttackRelease(ton, "8n");
   button.classList.add("pressed");
 
@@ -139,9 +139,12 @@ btnReplay.addEventListener("click", handleReplay);
 
 options.forEach((item, key) => {
   item.addEventListener("mouseover", () => {
+    arrows.forEach((el) => el.classList.remove("selected"));
     options.forEach((el) => el.classList.remove("selected"));
     sequenceOption = key + 1;
     item.classList.add("selected");
+    arrows[key * 2].classList.add("selected");
+    arrows[key * 2 + 1].classList.add("selected");
   });
   item.addEventListener("click", handleStart);
 });
