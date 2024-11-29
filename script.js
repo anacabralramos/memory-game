@@ -5,14 +5,15 @@ var currentClick = 0;
 var sequenceOption = 1;
 var originalSequence;
 
-const start = document.getElementById("start");
-const btnReplay = document.getElementById("btn-replay");
+const hiddenBackground = document.getElementById("hidden-background");
 const lblScore = document.getElementById("lbl-score");
 const gameOver = document.getElementById("game-over");
-const hiddenBackground = document.getElementById("hiddenBackground");
-const winContainer = document.getElementById("win-container");
-const options = document.querySelectorAll("#options li");
-const arrows = document.querySelectorAll("#options span");
+const start = document.getElementById("game-start");
+const options = document.querySelectorAll("#menu-options li");
+const arrows = document.querySelectorAll("#menu-options span");
+const winContainer = document.getElementById("game-won");
+
+const btnReplay = document.getElementById("btn-replay");
 const synth = new Tone.Synth().toDestination();
 
 const createConfetti = () => {
