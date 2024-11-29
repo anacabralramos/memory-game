@@ -73,6 +73,12 @@ const handleYouWin = () => {
   currentClick = 0;
 
   winContainer.style.display = "flex";
+
+  setTimeout(() => {
+    winContainer.style.display = "none";
+    start.style.display = "flex";
+    start.style.flexDirection = "column";
+  }, 3000);
 };
 
 const handleGameOver = () => {
