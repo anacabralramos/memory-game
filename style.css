@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 html {
-  font-size: 2vw;
+  font-size: min(3vw, 4vh);
 }
 
 body {
@@ -138,8 +138,8 @@ body {
   align-items: center;
   gap: 10px;
   border-radius: 8px;
-  padding: 0.5rem 0.5rem;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  padding: 0.5rem 0.5rem;
 }
 
 .score span {
