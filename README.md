@@ -17,12 +17,9 @@ Divirta-se enquanto desafia sua mente e tente alcançar o final sem errar!
 ## 📋 Índice
 1. [Sobre](#sobre)
 2. [Funcionalidades](#funcionalidades)
-3. [Instalação](#instalação)
-4. [Uso](#uso)
-5. [Tecnologias](#tecnologias)
-6. [Contribuições](#contribuições)
-7. [Licença](#licença)
-8. [Contato](#contato)
+3. [Tecnologias](#tecnologias)
+4. [Instalação](#instalação)
+5. [Contato](#contato)
 
 ---
 
@@ -52,6 +49,15 @@ O jogo pôde ser usado como base para aprender conceitos fundamentais de desenvo
 
 ---
 
+## 💻 Tecnologias
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- Biblioteca [Tone.js](https://tonejs.github.io/) para sons interativos.
+- Fonte de ícones [Material Icons](https://fonts.google.com/icons).
+
+---
+
 ## 🛠️ Instalação
 Explique como instalar e configurar o projeto localmente.
 
@@ -63,3 +69,12 @@ git clone <url-do-repositorio>
 cd <nome-do-projeto>
 
 # Abra o arquivo index.html no navegador
+```
+
+---
+
+## 📞 Contato
+Criado por Ana Clara Cabral Ramos.
+- Email: ana.clara.2cr@gmail.com
+- LinkedIn: [AnaClara](https://www.linkedin.com/in/ana-clara-cabral-ramos-31aa951a5/)  
+- GitHub: [AnaCabralRamos](https://github.com/anacabralramos)
