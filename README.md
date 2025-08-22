@@ -1,80 +1,43 @@
 # Memory Game 🎮
 
-<img width="747" alt="Captura de Tela 2024-12-04 às 20 44 40" src="https://github.com/user-attachments/assets/d7ef7f39-fa88-476f-b55d-b8e3603f3079">
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-yellow)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Tone.js](https://img.shields.io/badge/Audio-Tone.js-blue)](https://tonejs.github.io/)
+[![License](https://img.shields.io/badge/License-MIT-green)](https://opensource.org/licenses/MIT)
 
-Este é um jogo da memória desenvolvido com JavaScript puro.
-O objetivo é simples: testar sua memória e reflexos ao repetir sequências de cores e sons.
+![Captura de Tela do Jogo](https://github.com/user-attachments/assets/db5570a9-105c-448d-98d0-df21a6e241f3)
 
-Você pode escolher entre diferentes níveis de dificuldade:
+> Um jogo da memória desafiador inspirado no clássico Simon, desenvolvido com JavaScript puro.
 
-Fácil: Sequências de 10 passos.
-Intermediário: Sequências de 20 passos.
-Desafiante: Sequências de 30 passos.
-Divirta-se enquanto desafia sua mente e tente alcançar o final sem errar!
+Este é um jogo da memória que testa sua capacidade de memorização e reflexos através de sequências de cores e sons. Escolha entre três níveis de dificuldade e veja até onde sua memória pode chegar!
 
----
+## ✨ Funcionalidades
 
-## 📋 Índice
-1. [Sobre](#sobre)
-2. [Funcionalidades](#funcionalidades)
-3. [Tecnologias](#tecnologias)
-4. [Instalação](#instalação)
-5. [Contato](#contato)
+- 🎮 **3 Níveis de Dificuldade**: Fácil (10 sequências), Intermediário (20 sequências) e Desafiante (30 sequências)
+- 🔊 **Feedback Sonoro**: Sons distintos para cada cor usando a biblioteca Tone.js
+- ✨ **Efeitos Visuais**: Animações suaves e indicadores visuais durante o jogo
+- 📊 **Contador de Pontuação**: Acompanhe seu progresso em tempo real
+- 🎉 **Celebração por Conquista**: Efeito de confetes ao vencer o desafio
+- 🔄 **Reinício Rápido**: Botão "Try Again" para recomeçar rapidamente após errar
+- 📱 **Design Responsivo**: Jogável em desktop, tablet e mobile
 
----
+## 🚀 Como Jogar
 
-## Sobre
-O Memory Game é um jogo interativo que desafia os jogadores a testarem suas habilidades de memória e concentração. Inspirado no clássico jogo de sequência "Simon", o objetivo principal é memorizar e repetir corretamente uma sequência de cores que aumenta de dificuldade a cada rodada.
-O jogo pôde ser usado como base para aprender conceitos fundamentais de desenvolvimento web:
-- Manipulação do DOM;
-- Manipulação de eventos;
-- Estruturas de controle;
-- Timers e Delays;
-- Funções e Modularização;
-- Uso de bibliotecas externas;
-- Estilização condicional;
-- Manipulação de elementos dinâmicos;
+1. **Escolha** o nível de dificuldade desejado
+2. **Observe** atentamente a sequência de cores e sons apresentada
+3. **Repita** a sequência clicando nos botões na ordem correta
+4. **Avance** para sequências cada vez mais longas
+5. **Complete** todas as sequências do nível para vencer!
 
+## 🛠️ Tecnologias Utilizadas
 
----
-
-## 🚀 Funcionalidades
-- Lista detalhada das principais funcionalidades do projeto.
-- 🎮 Jogo da memória interativo com 3 níveis de dificuldade (10, 20 ou 30 sequências).
-- ✨ Efeitos visuais e sonoros para aprimorar a experiência do jogador.
-- 🔄 Reinício fácil do jogo ao perder, com botão "Try Again".
-- 🏆 Indicador de pontuação para acompanhar o progresso do jogador.
-- 🎉 Animação de vitória com confetes ao completar o desafio.
-- 📱 Responsividade.
-
----
-
-## 💻 Tecnologias
-- HTML5
-- CSS3
-- JavaScript (ES6+)
-- Biblioteca [Tone.js](https://tonejs.github.io/) para sons interativos.
-- Fonte de ícones [Material Icons](https://fonts.google.com/icons).
-
----
-
-## 🛠️ Instalação
-Explique como instalar e configurar o projeto localmente.
-
-```bash
-# Clone o repositório
-git clone <url-do-repositorio>
-
-# Acesse a pasta do projeto
-cd <nome-do-projeto>
-
-# Abra o arquivo index.html no navegador
-```
-
----
+- **HTML5** - Estrutura semântica do jogo
+- **CSS3** - Estilização moderna com animações e efeitos visuais
+- **JavaScript ES6+** - Lógica do jogo e manipulação do DOM
+- **Tone.js** - Biblioteca para geração e reprodução de sons
+- **Material Icons** - Ícones para uma interface intuitiva
 
 ## 📞 Contato
 Criado por Ana Clara Cabral Ramos.
 - Email: ana.clara.2cr@gmail.com
-- LinkedIn: [AnaClara](https://www.linkedin.com/in/ana-clara-cabral-ramos-31aa951a5/)  
+- LinkedIn: [Ana Clara](https://www.linkedin.com/in/ana-clara-cabral-ramos-31aa951a5/)  
 - GitHub: [AnaCabralRamos](https://github.com/anacabralramos)
