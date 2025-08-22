@@ -1,20 +1,40 @@
-import { delay, getButton, getNewSequence, VALUES, TONS } from "./utils.js";
+// Remove module imports and define functions directly
+const VALUES = ["GREEN", "RED", "BLUE", "YELLOW"];
+const TONS = { GREEN: 400, RED: 100, BLUE: 200, YELLOW: 300 };
+
+const getNewSequence = (quantity) =>
+  new Array(quantity).fill().map(() => VALUES[Math.floor(Math.random() * 4)]);
+
+const getButton = (color) =>
+  document.getElementById(`btn-${color.toLowerCase()}`);
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 var currentStep = 0;
 var currentClick = 0;
 var sequenceOption = 1;
 var originalSequence;
+var synth = null;
 
 const hiddenBackground = document.getElementById("hidden-background");
 const lblScore = document.getElementById("lbl-score");
 const gameOver = document.getElementById("game-over");
 const start = document.getElementById("game-start");
-const options = document.querySelectorAll("#menu-options li");
+const menuOptions = document.querySelectorAll(".container-option");
 const arrows = document.querySelectorAll("#menu-options span");
 const winContainer = document.getElementById("game-won");
-
 const btnReplay = document.getElementById("btn-replay");
-const synth = new Tone.Synth().toDestination();
+
+// Initialize audio context after user interaction
+const initAudio = () => {
+  if (!synth) {
+    synth = new Tone.Synth().toDestination();
+    // Resume audio context
+    if (Tone.context.state !== "running") {
+      Tone.context.resume();
+    }
+  }
+};
 
 const createConfetti = () => {
   const confettiContainer = document.getElementById("confetti-container");
@@ -101,7 +121,14 @@ const toggleButtons = (disabled, pointer) => {
 const handleButtonEffect = (color) => {
   const button = getButton(color);
   const ton = TONS[color];
-  synth.triggerAttackRelease(ton, "8n");
+
+  // Initialize audio on first button press
+  initAudio();
+
+  if (synth) {
+    synth.triggerAttackRelease(ton, "8n");
+  }
+
   button.classList.add("pressed");
 
   setTimeout(() => {
@@ -144,10 +171,10 @@ const handleReplay = () => {
 
 btnReplay.addEventListener("click", handleReplay);
 
-options.forEach((item, key) => {
+menuOptions.forEach((item, key) => {
   item.addEventListener("mouseover", () => {
     arrows.forEach((el) => el.classList.remove("selected"));
-    options.forEach((el) => el.classList.remove("selected"));
+    menuOptions.forEach((el) => el.classList.remove("selected"));
     sequenceOption = key + 1;
     item.classList.add("selected");
     arrows[key * 2].classList.add("selected");
