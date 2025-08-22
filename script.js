@@ -189,5 +189,3 @@ VALUES.forEach((color) => {
     handlePressButton(color);
   });
 });
-
-handleGameOver();
