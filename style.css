@@ -72,32 +72,6 @@ body {
   transform-style: preserve-3d;
 }
 
-/* .color-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.2) 0%,
-    transparent 50%,
-    rgba(0, 0, 0, 0.1) 100%
-  );
-  border-radius: 25px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.color-btn:hover::before {
-  opacity: 1;
-} */
-
-/* .color-btn:active {
-  transform: translateY(8px) scale(0.95);
-} */
-
 /* GREEN BUTTON */
 .btn-green {
   background: linear-gradient(135deg, #00ff88 0%, #00cc6a 50%, #00994d 100%);
@@ -106,10 +80,9 @@ body {
 }
 
 .btn-green:hover {
-  background: linear-gradient(135deg, #00ff99 0%, #00dd7a 50%, #00bb5d 100%);
-  box-shadow: 0 20px 40px rgba(0, 255, 136, 0.4), 0 8px 20px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  transform: translateY(-5px) scale(1.05);
+  background: linear-gradient(135deg, #00ffaa 0%, #00ff88 50%, #00ff66 100%);
+  box-shadow: 0 0 50px rgba(0, 255, 136, 0.8), 0 0 100px rgba(0, 255, 136, 0.4),
+    0 0 150px rgba(0, 255, 136, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .btn-green.pressed {
@@ -128,10 +101,9 @@ body {
 }
 
 .btn-red:hover {
-  background: linear-gradient(135deg, #ff5f6d 0%, #ff4757 50%, #ff3742 100%);
-  box-shadow: 0 20px 40px rgba(255, 71, 87, 0.4), 0 8px 20px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  transform: translateY(-5px) scale(1.05);
+  background: linear-gradient(135deg, #ff6b7a 0%, #ff5f6d 50%, #ff4757 100%);
+  box-shadow: 0 0 50px rgba(255, 71, 87, 0.8), 0 0 100px rgba(255, 71, 87, 0.4),
+    0 0 150px rgba(255, 71, 87, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .btn-red.pressed {
@@ -151,9 +123,8 @@ body {
 
 .btn-yellow:hover {
   background: linear-gradient(135deg, #ffb142 0%, #ffa502 50%, #ff9500 100%);
-  box-shadow: 0 20px 40px rgba(255, 165, 2, 0.4), 0 8px 20px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 0 50px rgba(255, 165, 2, 0.8), 0 0 100px rgba(255, 165, 2, 0.4),
+    0 0 150px rgba(255, 165, 2, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .btn-yellow.pressed {
@@ -167,29 +138,18 @@ body {
 /* BLUE BUTTON */
 .btn-blue {
   background: linear-gradient(135deg, #00aaff 0%, #0088dd 50%, #0066cc 100%);
-
-  /* background: linear-gradient(135deg, #00bbff 0%, #0099ff 50%, #0077ff 100%); */
-  /* box-shadow: 0 0 50px rgba(55, 66, 250, 0.8), 0 0 100px rgba(55, 66, 250, 0.4),
-    0 0 150px rgba(55, 66, 250, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5); */
-  /* background: (135deg, #0099ff 0%, #0077cc 50%, #0055aa 100%);
-  box-shadow: 0 15px 35px rgba(0, 153, 255, 0.3), 0 5px 15px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3); */
-  /* background: linear-gradient(135deg, #3742fa 0%, #2f3542 50%, #1e90ff 100%); */
-  /* box-shadow: 0 15px 35px rgba(55, 66, 250, 0.3), 0 5px 15px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3); */
+  box-shadow: 0 15px 35px rgba(55, 66, 250, 0.3), 0 5px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .btn-blue:hover {
   background: linear-gradient(135deg, #00bbff 0%, #0099ff 50%, #0077ff 100%);
-  /* background: linear-gradient(135deg, #5352ed 0%, #3742fa 50%, #2f3542 100%); */
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 20px 40px rgba(55, 66, 250, 0.4), 0 8px 20px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 50px rgba(55, 66, 250, 0.8), 0 0 100px rgba(55, 66, 250, 0.4),
+    0 0 150px rgba(55, 66, 250, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .btn-blue.pressed {
   background: linear-gradient(135deg, #00bbff 0%, #0099ff 50%, #0077ff 100%);
-  /* background: linear-gradient(135deg, #5352ed 0%, #3742fa 50%, #1e90ff 100%); */
   box-shadow: 0 0 50px rgba(55, 66, 250, 0.8), 0 0 100px rgba(55, 66, 250, 0.4),
     0 0 150px rgba(55, 66, 250, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
   transform: translateY(2px) scale(0.98);
