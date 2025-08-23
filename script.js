@@ -1,31 +1,121 @@
-// Remove module imports and define functions directly
+/** Contants */
 const VALUES = ["GREEN", "RED", "BLUE", "YELLOW"];
 const TONS = { GREEN: 400, RED: 100, BLUE: 200, YELLOW: 300 };
 
-const getNewSequence = (quantity) =>
-  new Array(quantity).fill().map(() => VALUES[Math.floor(Math.random() * 4)]);
-
-const getButton = (color) =>
-  document.getElementById(`btn-${color.toLowerCase()}`);
-
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
+/** Variables */
+var lvlOption = 1;
+var gameSequence;
 var currentStep = 0;
 var currentClick = 0;
-var sequenceOption = 1;
-var originalSequence;
 var synth = null;
+// var bestScore = 0;
 
+/** Utils */
+const getNewSequence = (quantity) =>
+  new Array(quantity).fill().map(() => VALUES[Math.floor(Math.random() * 4)]);
+const getButton = (color) =>
+  document.getElementById(`btn-${color.toLowerCase()}`);
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+/** Elements */
+const startMenu = document.getElementById("game-start");
 const hiddenBackground = document.getElementById("hidden-background");
 const lblScore = document.getElementById("lbl-score");
-const gameOver = document.getElementById("game-over");
-const start = document.getElementById("game-start");
-const menuOptions = document.querySelectorAll(".container-option");
-const arrows = document.querySelectorAll("#menu-options span");
 const winContainer = document.getElementById("game-won");
-const btnReplay = document.getElementById("btn-replay");
+const gameOver = document.getElementById("game-over");
 
-// Initialize audio context after user interaction
+// const currentScoreValue = document.getElementById("current-score-value");
+// const bestScoreValue = document.getElementById("best-score-value");
+
+/** Game Start Functions */
+const handlePressButton = (item) => {
+  if (gameSequence[currentClick] === item) {
+    currentClick++;
+    handleButtonEffect(item);
+    checkIfSequenceComplete();
+  } else {
+    handleGameOver();
+  }
+};
+
+const handleButtonEffect = (color) => {
+  const button = getButton(color);
+  const ton = TONS[color];
+
+  /** Initialize audio on first button press */
+  initAudio();
+
+  if (synth) {
+    synth.triggerAttackRelease(ton, "8n");
+  }
+
+  button.classList.add("pressed");
+
+  setTimeout(() => {
+    button.classList.remove("pressed");
+  }, 400);
+};
+
+const toggleButtons = (disabled, pointer) => {
+  VALUES.forEach((color) => {
+    const button = getButton(color);
+    button.disabled = disabled;
+    button.style.pointerEvents = pointer;
+  });
+};
+
+const checkIfSequenceComplete = () => {
+  if (currentClick > currentStep) {
+    currentClick = 0;
+    if (++currentStep === gameSequence.length) {
+      // updateBestScore(currentStep);
+      handleYouWin();
+    } else {
+      handleGameSequence();
+    }
+  }
+};
+
+const handleGameSequence = async () => {
+  lblScore.textContent = `${currentStep}`;
+  // currentScoreValue.textContent = `${currentStep}`;
+  toggleButtons(true, "none");
+
+  setTimeout(async () => {
+    for (var i = 0; i <= currentStep; i++) {
+      handleButtonEffect(gameSequence[i]);
+      await delay(700);
+    }
+    toggleButtons(false, "auto");
+  }, 1000);
+};
+
+/** Game Finished */
+const handleYouWin = () => {
+  createConfetti();
+  hiddenBackground.style.display = "flex";
+  toggleButtons(true, "none");
+  currentStep = 0;
+  currentClick = 0;
+
+  winContainer.style.display = "flex";
+
+  setTimeout(() => {
+    winContainer.style.display = "none";
+    startMenu.style.display = "flex";
+    startMenu.style.flexDirection = "column";
+  }, 3000);
+};
+
+const handleGameOver = () => {
+  gameOver.style.display = "flex";
+  hiddenBackground.style.display = "flex";
+  toggleButtons(true, "none");
+  currentStep = 0;
+  currentClick = 0;
+};
+
+/** Audio */
 const initAudio = () => {
   if (!synth) {
     synth = new Tone.Synth().toDestination();
@@ -36,6 +126,7 @@ const initAudio = () => {
   }
 };
 
+/** Confetti */
 const createConfetti = () => {
   const confettiContainer = document.getElementById("confetti-container");
 
@@ -64,123 +155,30 @@ const createConfetti = () => {
   }, 5000);
 };
 
-// gamer press
-const handlePressButton = (item) => {
-  if (originalSequence[currentClick] === item) {
-    currentClick++;
-    handleButtonEffect(item);
-    checkIfSequenceComplete();
-  } else {
-    handleGameOver();
-  }
-};
+/** Menu Game Start */
+const menuOptions = document.querySelectorAll("#game-options > div");
+const arrows = document.querySelectorAll("#game-options span");
 
-const checkIfSequenceComplete = () => {
-  if (currentClick > currentStep) {
-    currentClick = 0;
-    if (++currentStep === originalSequence.length) {
-      handleYouWin();
-    } else {
-      handleGameSequence();
-    }
-  }
-};
-
-const handleYouWin = () => {
-  createConfetti();
-  hiddenBackground.style.display = "flex";
-  toggleButtons(true, "none");
-  currentStep = 0;
-  currentClick = 0;
-
-  winContainer.style.display = "flex";
-
-  setTimeout(() => {
-    winContainer.style.display = "none";
-    start.style.display = "flex";
-    start.style.flexDirection = "column";
-  }, 3000);
-};
-
-const handleGameOver = () => {
-  gameOver.style.display = "flex";
-  hiddenBackground.style.display = "flex";
-  toggleButtons(true, "none");
-  currentStep = 0;
-  currentClick = 0;
-};
-
-const toggleButtons = (disabled, pointer) => {
-  VALUES.forEach((color) => {
-    const button = getButton(color);
-    button.disabled = disabled;
-    button.style.pointerEvents = pointer;
-  });
-};
-
-const handleButtonEffect = (color) => {
-  const button = getButton(color);
-  const ton = TONS[color];
-
-  // Initialize audio on first button press
-  initAudio();
-
-  if (synth) {
-    synth.triggerAttackRelease(ton, "8n");
-  }
-
-  button.classList.add("pressed");
-
-  setTimeout(() => {
-    button.classList.remove("pressed");
-  }, 400);
-};
-
-// game sequence
-const handleGameSequence = async () => {
-  lblScore.textContent = `${currentStep}`;
-  toggleButtons(true, "none");
-
-  setTimeout(async () => {
-    for (var i = 0; i <= currentStep; i++) {
-      handleButtonEffect(originalSequence[i]);
-      await delay(700);
-    }
-    toggleButtons(false, "auto");
-  }, 1000);
-};
-
-// game start
 const handleStart = () => {
-  start.classList.add("hide");
-  originalSequence = getNewSequence(sequenceOption * 10);
+  startMenu.classList.add("hide");
+  gameSequence = getNewSequence(lvlOption * 10);
   handleGameSequence();
   setTimeout(() => {
-    start.style.display = "none";
+    startMenu.style.display = "none";
     hiddenBackground.style.display = "none";
   }, 300);
 };
 
-// game replay
-const handleReplay = () => {
-  originalSequence = getNewSequence(sequenceOption * 10);
-  handleGameSequence();
-  hiddenBackground.style.display = "none";
-  gameOver.style.display = "none";
-};
-
-btnReplay.addEventListener("click", handleReplay);
-
-menuOptions.forEach((item, key) => {
-  item.addEventListener("mouseover", () => {
-    arrows.forEach((el) => el.classList.remove("selected"));
+menuOptions.forEach((option, key) => {
+  option.addEventListener("mouseenter", () => {
+    lvlOption = key + 1;
     menuOptions.forEach((el) => el.classList.remove("selected"));
-    sequenceOption = key + 1;
-    item.classList.add("selected");
+    option.classList.add("selected");
+    arrows.forEach((el) => el.classList.remove("selected"));
     arrows[key * 2].classList.add("selected");
     arrows[key * 2 + 1].classList.add("selected");
   });
-  item.addEventListener("click", handleStart);
+  option.addEventListener("click", handleStart);
 });
 
 VALUES.forEach((color) => {
@@ -189,3 +187,15 @@ VALUES.forEach((color) => {
     handlePressButton(color);
   });
 });
+
+/** Replay */
+const btnReplay = document.getElementById("btn-replay");
+
+const handleReplay = () => {
+  gameSequence = getNewSequence(lvlOption * 10);
+  handleGameSequence();
+  hiddenBackground.style.display = "none";
+  gameOver.style.display = "none";
+};
+
+btnReplay.addEventListener("click", handleReplay);
