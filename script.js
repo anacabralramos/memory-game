@@ -9,6 +9,73 @@ var currentStep = 0;
 var currentClick = 0;
 var synth = null;
 
+/** Local Storage Keys */
+const STORAGE_KEYS = {
+  VICTORIES: "memoryGame_victories",
+  BEST_SCORE: "memoryGame_bestScore",
+};
+
+/** Local Storage Functions */
+const saveToLocalStorage = (key, value) => {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    console.error("Error saving to localStorage:", error);
+  }
+};
+
+const loadFromLocalStorage = (key, defaultValue) => {
+  try {
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : defaultValue;
+  } catch (error) {
+    console.error("Error loading from localStorage:", error);
+    return defaultValue;
+  }
+};
+
+const updateVictories = () => {
+  const currentVictories = loadFromLocalStorage(STORAGE_KEYS.VICTORIES, 0);
+  const newVictories = currentVictories + 1;
+  saveToLocalStorage(STORAGE_KEYS.VICTORIES, newVictories);
+
+  // Update display
+  const victoriesElement = document.getElementById("victories-value");
+  if (victoriesElement) {
+    victoriesElement.textContent = newVictories;
+  }
+};
+
+const updateBestScore = (newScore) => {
+  const currentBestScore = loadFromLocalStorage(STORAGE_KEYS.BEST_SCORE, 0);
+
+  if (newScore > currentBestScore) {
+    saveToLocalStorage(STORAGE_KEYS.BEST_SCORE, newScore);
+
+    // Update display
+    const bestScoreElement = document.getElementById("best-score-value");
+    if (bestScoreElement) {
+      bestScoreElement.textContent = newScore;
+    }
+  }
+};
+
+const loadGameStats = () => {
+  // Load victories
+  const victories = loadFromLocalStorage(STORAGE_KEYS.VICTORIES, 0);
+  const victoriesElement = document.getElementById("victories-value");
+  if (victoriesElement) {
+    victoriesElement.textContent = victories;
+  }
+
+  // Load best score
+  const bestScore = loadFromLocalStorage(STORAGE_KEYS.BEST_SCORE, 0);
+  const bestScoreElement = document.getElementById("best-score-value");
+  if (bestScoreElement) {
+    bestScoreElement.textContent = bestScore;
+  }
+};
+
 /** Utils */
 const getNewSequence = (quantity) =>
   new Array(quantity).fill().map(() => VALUES[Math.floor(Math.random() * 4)]);
@@ -90,6 +157,8 @@ const handleYouWin = () => {
 
   winContainer.style.display = "flex";
 
+  updateVictories();
+  updateBestScore(currentStep);
   setTimeout(() => {
     winContainer.style.display = "none";
     resetGame();
@@ -101,6 +170,7 @@ const handleYouWin = () => {
 const handleGameOver = () => {
   gameOver.style.display = "flex";
   toggleButtons(true, "none");
+  updateBestScore(currentStep);
 };
 
 /** Audio */
@@ -225,3 +295,6 @@ VALUES.forEach((color) => {
     handlePressButton(color);
   });
 });
+
+// Load game stats from localStorage when page loads
+loadGameStats();
