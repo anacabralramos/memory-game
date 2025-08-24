@@ -18,18 +18,17 @@ const getButton = (color) =>
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /** Elements */
-const startMenu = document.getElementById("game-start");
-const hiddenBackground = document.getElementById("hidden-background");
 const lblScore = document.getElementById("lbl-score");
 const winContainer = document.getElementById("game-won");
 const gameOver = document.getElementById("game-over");
+const gameBoard = document.querySelector(".game-board");
 
 // const currentScoreValue = document.getElementById("current-score-value");
 // const bestScoreValue = document.getElementById("best-score-value");
 
 /** Game Start Functions */
 const handlePressButton = (item) => {
-  if (gameSequence[currentClick] === item) {
+  if (gameSequence && gameSequence[currentClick] === item) {
     currentClick++;
     handleButtonEffect(item);
     checkIfSequenceComplete();
@@ -71,12 +70,12 @@ const checkIfSequenceComplete = () => {
       // updateBestScore(currentStep);
       handleYouWin();
     } else {
-      handleGameSequence();
+      triggerGameSequence();
     }
   }
 };
 
-const handleGameSequence = async () => {
+const triggerGameSequence = async () => {
   lblScore.textContent = `${currentStep}`;
   // currentScoreValue.textContent = `${currentStep}`;
   toggleButtons(true, "none");
@@ -93,26 +92,19 @@ const handleGameSequence = async () => {
 /** Game Finished */
 const handleYouWin = () => {
   createConfetti();
-  hiddenBackground.style.display = "flex";
   toggleButtons(true, "none");
-  currentStep = 0;
-  currentClick = 0;
 
   winContainer.style.display = "flex";
 
   setTimeout(() => {
     winContainer.style.display = "none";
-    startMenu.style.display = "flex";
-    startMenu.style.flexDirection = "column";
+    resetGame();
   }, 3000);
 };
 
 const handleGameOver = () => {
   gameOver.style.display = "flex";
-  hiddenBackground.style.display = "flex";
   toggleButtons(true, "none");
-  currentStep = 0;
-  currentClick = 0;
 };
 
 /** Audio */
@@ -155,31 +147,84 @@ const createConfetti = () => {
   }, 5000);
 };
 
-/** Menu Game Start */
-const menuOptions = document.querySelectorAll("#game-options > div");
-const arrows = document.querySelectorAll("#game-options span");
+/** Replay */
+const btnReplay = document.getElementById("btn-replay");
 
-const handleStart = () => {
-  startMenu.classList.add("hide");
+const handleReplay = () => {
+  // Reset game state
+  currentStep = 0;
+  currentClick = 0;
+
+  // Generate new sequence with current level
   gameSequence = getNewSequence(lvlOption * 10);
-  handleGameSequence();
-  setTimeout(() => {
-    startMenu.style.display = "none";
-    hiddenBackground.style.display = "none";
-  }, 300);
+
+  // Start game sequence
+  triggerGameSequence();
+
+  // Hide overlays
+  gameOver.style.display = "none";
 };
 
-menuOptions.forEach((option, key) => {
-  option.addEventListener("mouseenter", () => {
-    lvlOption = key + 1;
-    menuOptions.forEach((el) => el.classList.remove("selected"));
-    option.classList.add("selected");
-    arrows.forEach((el) => el.classList.remove("selected"));
-    arrows[key * 2].classList.add("selected");
-    arrows[key * 2 + 1].classList.add("selected");
+btnReplay.addEventListener("click", handleReplay);
+
+/** Menu Game Start */
+const sideMenuOptions = document.querySelectorAll("#side-menu .lvl-option");
+const sideMenuArrows = document.querySelectorAll("#side-menu .arrow");
+
+const startGame = () => {
+  // Enable game board
+  gameBoard.classList.remove("disabled");
+
+  // Initialize game
+  gameSequence = getNewSequence(lvlOption * 10);
+  currentStep = 0;
+  currentClick = 0;
+
+  // Start first sequence
+  triggerGameSequence();
+};
+
+const resetGame = () => {
+  // Disable game board
+  gameBoard.classList.add("disabled");
+
+  // Reset game state
+  gameSequence = null;
+  currentStep = 0;
+  currentClick = 0;
+  lblScore.textContent = "0";
+
+  // Reset side menu selection
+  // sideMenuOptions.forEach((opt) => opt.classList.remove("active"));
+};
+
+const handleStartNewSequence = (option) => {
+  // Remove active class from all options
+  sideMenuOptions.forEach((opt) => {
+    opt.classList.remove("active");
   });
-  option.addEventListener("click", handleStart);
+
+  // Add active class to selected option
+  option.classList.add("active");
+
+  // Update level option
+  lvlOption = parseInt(option.dataset.sequences) / 10;
+
+  // // If game is already running, restart with new sequence length
+  if (gameSequence) {
+    resetGame();
+  }
+  // Start the game for the first time
+  startGame();
+};
+
+// Add event listeners for side menu options
+sideMenuOptions.forEach((option) => {
+  option.addEventListener("click", () => handleStartNewSequence(option));
 });
+
+// Initialize game board as disabled
+gameBoard.classList.add("disabled");
 
 VALUES.forEach((color) => {
   const button = getButton(color);
@@ -187,15 +232,3 @@ VALUES.forEach((color) => {
     handlePressButton(color);
   });
 });
-
-/** Replay */
-const btnReplay = document.getElementById("btn-replay");
-
-const handleReplay = () => {
-  gameSequence = getNewSequence(lvlOption * 10);
-  handleGameSequence();
-  hiddenBackground.style.display = "none";
-  gameOver.style.display = "none";
-};
-
-btnReplay.addEventListener("click", handleReplay);
