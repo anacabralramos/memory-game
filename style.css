@@ -138,8 +138,8 @@ body {
 }
 
 /* Best and Current Score */
-.best-score,
-.current-score {
+.victories,
+.best-score {
   display: flex;
   align-items: center;
   justify-content: center;

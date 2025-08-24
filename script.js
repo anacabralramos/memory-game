@@ -8,7 +8,6 @@ var gameSequence;
 var currentStep = 0;
 var currentClick = 0;
 var synth = null;
-// var bestScore = 0;
 
 /** Utils */
 const getNewSequence = (quantity) =>
@@ -22,9 +21,6 @@ const lblScore = document.getElementById("lbl-score");
 const winContainer = document.getElementById("game-won");
 const gameOver = document.getElementById("game-over");
 const gameBoard = document.querySelector(".game-board");
-
-// const currentScoreValue = document.getElementById("current-score-value");
-// const bestScoreValue = document.getElementById("best-score-value");
 
 /** Game Start Functions */
 const handlePressButton = (item) => {
@@ -67,7 +63,6 @@ const checkIfSequenceComplete = () => {
   if (currentClick > currentStep) {
     currentClick = 0;
     if (++currentStep === gameSequence.length) {
-      // updateBestScore(currentStep);
       handleYouWin();
     } else {
       triggerGameSequence();
@@ -77,7 +72,6 @@ const checkIfSequenceComplete = () => {
 
 const triggerGameSequence = async () => {
   lblScore.textContent = `${currentStep}`;
-  // currentScoreValue.textContent = `${currentStep}`;
   toggleButtons(true, "none");
 
   setTimeout(async () => {
@@ -99,6 +93,8 @@ const handleYouWin = () => {
   setTimeout(() => {
     winContainer.style.display = "none";
     resetGame();
+    // Reset side menu selection
+    sideMenuOptions.forEach((opt) => opt.classList.remove("active"));
   }, 3000);
 };
 
@@ -193,9 +189,6 @@ const resetGame = () => {
   currentStep = 0;
   currentClick = 0;
   lblScore.textContent = "0";
-
-  // Reset side menu selection
-  // sideMenuOptions.forEach((opt) => opt.classList.remove("active"));
 };
 
 const handleStartNewSequence = (option) => {
@@ -210,7 +203,7 @@ const handleStartNewSequence = (option) => {
   // Update level option
   lvlOption = parseInt(option.dataset.sequences) / 10;
 
-  // // If game is already running, restart with new sequence length
+  // If game is already running, restart with new sequence length
   if (gameSequence) {
     resetGame();
   }
