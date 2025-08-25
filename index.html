@@ -17,45 +17,65 @@
   </head>
   <body>
     <div class="container">
-      <div id="hidden-background"></div>
+      <!-- Game Board -->
       <div class="game-board">
-        <button id="btn-green" class="color-btn btn-green"></button>
-        <button id="btn-red" class="color-btn btn-red"></button>
-        <button id="btn-yellow" class="color-btn btn-yellow"></button>
-        <button id="btn-blue" class="color-btn btn-blue"></button>
-      </div>
-      <div class="middle">
-        <div class="score">
-          <span class="material-icons">star</span>
-          <p id="lbl-score"></p>
+        <button id="btn-green" class="game-btn btn-green"></button>
+        <button id="btn-red" class="game-btn btn-red"></button>
+        <button id="btn-yellow" class="game-btn btn-yellow"></button>
+        <button id="btn-blue" class="game-btn btn-blue"></button>
+
+        <!-- Middle Menu -->
+        <div class="middle">
+          <div class="score">
+            <span class="material-icons">star</span>
+            <p id="lbl-score"></p>
+          </div>
         </div>
       </div>
-      <div id="game-over">
-        <h1>GAME OVER</h1>
-        <button id="btn-replay" class="default-button">TRY AGAIN</button>
-      </div>
-      <div id="game-start">
-        <div class="game-start">START MEMORY GAME</div>
-        <ul id="menu-options">
-          <div class="container-option selected">
-            <span class="material-icons arrow selected">arrow_right</span>
-            <li>10 SEQUENCE</li>
-            <span class="material-icons arrow selected">arrow_left</span>
+
+      <!-- Side Menu -->
+      <div id="side-menu">
+        <div>
+          <h3 class="label">Game Options</h3>
+          <div class="game-options">
+            <div class="lvl-option" data-sequences="10">
+              <span class="material-icons arrow">arrow_right</span>
+              <span>10 SEQUENCE</span>
+              <span class="material-icons arrow">arrow_left</span>
+            </div>
+            <div class="lvl-option" data-sequences="20">
+              <span class="material-icons arrow">arrow_right</span>
+              <span>20 SEQUENCE</span>
+              <span class="material-icons arrow">arrow_left</span>
+            </div>
+            <div class="lvl-option" data-sequences="30">
+              <span class="material-icons arrow">arrow_right</span>
+              <span>30 SEQUENCE</span>
+              <span class="material-icons arrow">arrow_left</span>
+            </div>
+            <div class="lvl-option" data-sequences="free">
+              <span class="material-icons arrow">arrow_right</span>
+              <span>FREE STYLE</span>
+              <span class="material-icons arrow">arrow_left</span>
+            </div>
           </div>
-          <div class="container-option">
-            <span class="material-icons arrow">arrow_right</span>
-            <li>20 SEQUENCE</li>
-            <span class="material-icons arrow">arrow_left</span>
+        </div>
+
+        <div>
+          <h3 class="label">Best Score</h3>
+          <div class="best-score">
+            <span class="material-icons green-star">star</span>
+            <span id="best-score-value">0</span>
           </div>
-          <div class="container-option">
-            <span class="material-icons arrow">arrow_right</span>
-            <li>30 SEQUENCE</li>
-            <span class="material-icons arrow">arrow_left</span>
+        </div>
+
+        <div>
+          <h3 class="label">Victories</h3>
+          <div class="victories">
+            <span class="material-icons trophy">emoji_events</span>
+            <span id="victories-value">0</span>
           </div>
-        </ul>
-      </div>
-      <div id="game-won">
-        <h1>You Win!</h1>
+        </div>
       </div>
 
       <div id="confetti-container"></div>
