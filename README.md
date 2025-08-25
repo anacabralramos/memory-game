@@ -6,38 +6,38 @@
 
 ![Captura de Tela do Jogo](https://github.com/user-attachments/assets/db5570a9-105c-448d-98d0-df21a6e241f3)
 
-> Um jogo da memória desafiador inspirado no clássico Simon, desenvolvido com JavaScript puro.
+> A challenging memory game inspired by the classic Simon, developed with pure JavaScript.
 
-Este é um jogo da memória que testa sua capacidade de memorização e reflexos através de sequências de cores e sons. Escolha entre três níveis de dificuldade e veja até onde sua memória pode chegar!
+This memory game tests your memory and reflexes through sequences of colors and sounds. Choose from three difficulty levels and see how far your memory can go!
 
-## ✨ Funcionalidades
+## ✨ Features
 
-- 🎮 **3 Níveis de Dificuldade**: Fácil (10 sequências), Intermediário (20 sequências) e Desafiante (30 sequências)
-- 🔊 **Feedback Sonoro**: Sons distintos para cada cor usando a biblioteca Tone.js
-- ✨ **Efeitos Visuais**: Animações suaves e indicadores visuais durante o jogo
-- 📊 **Contador de Pontuação**: Acompanhe seu progresso em tempo real
-- 🎉 **Celebração por Conquista**: Efeito de confetes ao vencer o desafio
-- 🔄 **Reinício Rápido**: Botão "Try Again" para recomeçar rapidamente após errar
-- 📱 **Design Responsivo**: Jogável em desktop, tablet e mobile
+- 🎮 **3 Difficulty Levels**: Easy (10 sequences), Intermediate (20 sequences), and Challenging (30 sequences)
+- 🔊 **Sound Feedback**: Distinct sounds for each color using the Tone.js library
+- ✨ **Visual Effects**: Smooth animations and visual indicators during gameplay
+- 📊 **Score Counter**: Track your progress in real time
+- 🎉 **Achievement Celebration**: Confetti effect when you complete a challenge
+- 🔄 **Quick Restart**: "Try Again" button to quickly restart after a mistake
+- 📱 **Responsive Design**: Playable on desktop, tablet, and mobile
 
-## 🚀 Como Jogar
+## 🚀 How to Play
 
-1. **Escolha** o nível de dificuldade desejado
-2. **Observe** atentamente a sequência de cores e sons apresentada
-3. **Repita** a sequência clicando nos botões na ordem correta
-4. **Avance** para sequências cada vez mais longas
-5. **Complete** todas as sequências do nível para vencer!
+1. **Choose** your desired difficulty level
+2. **Watch** carefully the sequence of colors and sounds presented
+3. **Repeat** the sequence by clicking the buttons in the correct order
+4. **Advance** to increasingly longer sequences
+5. **Complete** all sequences in the level to win!
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Technologies Used
 
-- **HTML5** - Estrutura semântica do jogo
-- **CSS3** - Estilização moderna com animações e efeitos visuais
-- **JavaScript ES6+** - Lógica do jogo e manipulação do DOM
-- **Tone.js** - Biblioteca para geração e reprodução de sons
-- **Material Icons** - Ícones para uma interface intuitiva
+- **HTML5** - Game semantic structure
+- **CSS3** - Modern styling with animations and visual effects
+- **JavaScript ES6+** - Game logic and DOM manipulation
+- **Tone.js** - Library for sound generation and playback
+- **Local Storage**: Persistent game statistics
 
-## 📞 Contato
-Criado por Ana Clara Cabral Ramos.
+## 📞 Contact
+Created by Ana Clara Cabral Ramos.
 - Email: ana.clara.2cr@gmail.com
 - LinkedIn: [Ana Clara](https://www.linkedin.com/in/ana-clara-cabral-ramos-31aa951a5/)  
 - GitHub: [AnaCabralRamos](https://github.com/anacabralramos)
