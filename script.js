@@ -49,6 +49,8 @@ const updateVictories = () => {
 const updateBestScore = (newScore) => {
   const currentBestScore = loadFromLocalStorage(STORAGE_KEYS.BEST_SCORE, 0);
 
+  // In free style mode, newScore represents the sequence length achieved
+  // In fixed mode, newScore represents the sequence length completed
   if (newScore > currentBestScore) {
     saveToLocalStorage(STORAGE_KEYS.BEST_SCORE, newScore);
 
@@ -130,7 +132,14 @@ const checkIfSequenceComplete = () => {
   if (currentClick > currentStep) {
     currentClick = 0;
     if (++currentStep === gameSequence.length) {
-      handleYouWin();
+      if (lvlOption === "free") {
+        // Free style mode: add one more sequence and continue
+        gameSequence.push(VALUES[Math.floor(Math.random() * 4)]);
+        triggerGameSequence();
+      } else {
+        // Fixed sequence mode: check if game is won
+        handleYouWin();
+      }
     } else {
       triggerGameSequence();
     }
@@ -170,6 +179,7 @@ const handleYouWin = () => {
 const handleGameOver = () => {
   gameOver.style.display = "flex";
   toggleButtons(true, "none");
+
   updateBestScore(currentStep);
 };
 
@@ -222,7 +232,11 @@ const handleReplay = () => {
   currentClick = 0;
 
   // Generate new sequence with current level
-  gameSequence = getNewSequence(lvlOption * 10);
+  if (lvlOption === "free") {
+    gameSequence = getNewSequence(1);
+  } else {
+    gameSequence = getNewSequence(lvlOption * 10);
+  }
 
   // Start game sequence
   triggerGameSequence();
@@ -242,7 +256,13 @@ const startGame = () => {
   gameBoard.classList.remove("disabled");
 
   // Initialize game
-  gameSequence = getNewSequence(lvlOption * 10);
+  if (lvlOption === "free") {
+    // Free style mode: start with 1 sequence and add more as player progresses
+    gameSequence = getNewSequence(1);
+  } else {
+    // Fixed sequence mode
+    gameSequence = getNewSequence(lvlOption * 10);
+  }
   currentStep = 0;
   currentClick = 0;
 
@@ -271,7 +291,11 @@ const handleStartNewSequence = (option) => {
   option.classList.add("active");
 
   // Update level option
-  lvlOption = parseInt(option.dataset.sequences) / 10;
+  if (option.dataset.sequences === "free") {
+    lvlOption = "free";
+  } else {
+    lvlOption = parseInt(option.dataset.sequences) / 10;
+  }
 
   // If game is already running, restart with new sequence length
   if (gameSequence) {
