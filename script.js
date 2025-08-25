@@ -87,8 +87,6 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /** Elements */
 const lblScore = document.getElementById("lbl-score");
-const winContainer = document.getElementById("game-won");
-const gameOver = document.getElementById("game-over");
 const gameBoard = document.querySelector(".game-board");
 
 /** Game Start Functions */
@@ -164,12 +162,12 @@ const handleYouWin = () => {
   createConfetti();
   toggleButtons(true, "none");
 
-  winContainer.style.display = "flex";
+  // Add you-win class to the board to show "YOU WIN!" text
+  gameBoard.classList.add("you-win");
 
   updateVictories();
   updateBestScore(currentStep);
   setTimeout(() => {
-    winContainer.style.display = "none";
     resetGame();
     // Reset side menu selection
     sideMenuOptions.forEach((opt) => opt.classList.remove("active"));
@@ -177,7 +175,9 @@ const handleYouWin = () => {
 };
 
 const handleGameOver = () => {
-  gameOver.style.display = "flex";
+  // Add game-over class to the board to show "GAME OVER" text
+  gameBoard.classList.add("game-over");
+
   toggleButtons(true, "none");
 
   updateBestScore(currentStep);
@@ -223,30 +223,6 @@ const createConfetti = () => {
   }, 5000);
 };
 
-/** Replay */
-const btnReplay = document.getElementById("btn-replay");
-
-const handleReplay = () => {
-  // Reset game state
-  currentStep = 0;
-  currentClick = 0;
-
-  // Generate new sequence with current level
-  if (lvlOption === "free") {
-    gameSequence = getNewSequence(1);
-  } else {
-    gameSequence = getNewSequence(lvlOption * 10);
-  }
-
-  // Start game sequence
-  triggerGameSequence();
-
-  // Hide overlays
-  gameOver.style.display = "none";
-};
-
-btnReplay.addEventListener("click", handleReplay);
-
 /** Menu Game Start */
 const sideMenuOptions = document.querySelectorAll("#side-menu .lvl-option");
 const sideMenuArrows = document.querySelectorAll("#side-menu .arrow");
@@ -254,6 +230,10 @@ const sideMenuArrows = document.querySelectorAll("#side-menu .arrow");
 const startGame = () => {
   // Enable game board
   gameBoard.classList.remove("disabled");
+
+  // Remove game-over and you-win classes if they exist
+  gameBoard.classList.remove("game-over");
+  gameBoard.classList.remove("you-win");
 
   // Initialize game
   if (lvlOption === "free") {
@@ -273,6 +253,10 @@ const startGame = () => {
 const resetGame = () => {
   // Disable game board
   gameBoard.classList.add("disabled");
+
+  // Remove game-over and you-win classes if they exist
+  gameBoard.classList.remove("game-over");
+  gameBoard.classList.remove("you-win");
 
   // Reset game state
   gameSequence = null;
