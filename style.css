@@ -454,8 +454,9 @@ body {
 /* Middle Menu */
 .middle {
   position: absolute;
-  top: 32%;
-  left: 32%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: min(15vw, 30vh);
   aspect-ratio: 1 / 1;
   display: flex;
