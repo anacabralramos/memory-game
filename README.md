@@ -9,6 +9,7 @@
 > A challenging memory game inspired by the classic Simon, developed with pure JavaScript.
 
 This memory game tests your memory and reflexes through sequences of colors and sounds. Choose from three difficulty levels and see how far your memory can go!
+Try it out here: https://anacabralramos.github.io/memory-game/index.html
 
 ## ✨ Features
 
